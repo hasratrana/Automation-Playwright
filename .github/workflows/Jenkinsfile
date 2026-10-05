@@ -2,8 +2,19 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'NodeJS'
+    }
+
     stages {
-              
+
+        stage('Verify Environment') {
+            steps {
+                bat 'node --version'
+                bat 'npm --version'
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 bat 'npm ci'
@@ -12,7 +23,7 @@ pipeline {
 
         stage('Install Playwright Browsers') {
             steps {
-                bat 'npx playwright install chromium'
+                bat 'npx playwright install'
             }
         }
 
@@ -25,8 +36,15 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'test-results/**/*, playwright-report/**/*',
-                             allowEmptyArchive: true
+            publishHTML([
+                allowMissing: true,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'playwright-report',
+                reportFiles: 'index.html',
+                reportName: 'Playwright HTML Report',
+                includes: '**/*'
+            ])
         }
     }
 }
