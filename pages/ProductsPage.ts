@@ -8,10 +8,8 @@ export class ProductsPage {
   }
 
   async verifyProductsPage() {
-    // Verify URL
-    await expect(this.page).toHaveURL(/inventory.html/);
 
-    // Verify product list is visible
+    await expect(this.page).toHaveURL(/inventory.html/);
     await expect(this.page.locator('.inventory_list')).toBeVisible();
   }
 }

@@ -1,0 +1,53 @@
+// Poll SCM trigger test - second test
+// Poll SCM trigger test
+// Jenkins Poll SCM test
+
+pipeline {
+    agent any
+
+    tools {
+        nodejs 'NodeJS'
+    }
+
+    stages {
+
+        stage('Verify Environment') {
+            steps {
+                bat 'node --version'
+                bat 'npm --version'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                bat 'npm ci'
+            }
+        }
+
+        stage('Install Playwright Browsers') {
+            steps {
+                bat 'npx playwright install'
+            }
+        }
+
+        stage('Run Playwright Tests') {
+            steps {
+                bat 'npx playwright test'
+            }
+        }
+    }
+
+    post {
+        always {
+            publishHTML([
+                allowMissing: true,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'playwright-report',
+                reportFiles: 'index.html',
+                reportName: 'Playwright HTML Report',
+                includes: '**/*'
+            ])
+        }
+    }
+}

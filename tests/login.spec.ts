@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('Verify SauceDemo Login', async ({ page }) => {
+test('User should be able to login successfully @smoke', async ({ page }) => {
 
     await page.goto('https://www.saucedemo.com/');
 

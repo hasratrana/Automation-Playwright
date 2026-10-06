@@ -1,17 +1,29 @@
-
-# Playwright
+# Node.js
 node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/playwright/.auth/
 
-node_modules/
+# Playwright reports
 test-results/
 playwright-report/
 blob-report/
 playwright/.cache/
+
+# Playwright authentication
+playwright/.auth/
+auth/
+*.auth.json
+storageState/
+
+# Environment / secrets
 .env
 .env.*
-!.env.examplegit status
+!.env.example
+
+# Jenkins
+jenkins.war
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
