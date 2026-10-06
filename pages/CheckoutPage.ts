@@ -1,13 +1,10 @@
 import { Page, expect } from '@playwright/test';
 
 export class CheckoutPage {
-
-    constructor(private page: Page) {}
+     constructor(private page: Page) {}
 
     async clickCheckout() {
-        await this.page
-            .getByRole('button', { name: 'Checkout' })
-            .click();
+        await this.page.getByRole('button', { name: 'Checkout' }).click();
     }
 
     async enterCustomerInformation(
@@ -15,28 +12,21 @@ export class CheckoutPage {
         lastName: string,
         postalCode: string
     ) {
-        await this.page
-            .getByPlaceholder('First Name')
-            .fill(firstName);
+        await this.page.getByPlaceholder('First Name').fill(firstName);
 
-        await this.page
-            .getByPlaceholder('Last Name')
+        await this.page.getByPlaceholder('Last Name')
             .fill(lastName);
 
-        await this.page
-            .getByPlaceholder('Zip/Postal Code')
+        await this.page.getByPlaceholder('Zip/Postal Code')
             .fill(postalCode);
     }
 
     async clickContinue() {
-        await this.page
-            .getByRole('button', { name: 'Continue' })
-            .click();
+        await this.page.getByRole('button', { name: 'Continue' }).click();
     }
 
     async clickFinish() {
-        await this.page
-            .getByRole('button', { name: 'Finish' })
+        await this.page.getByRole('button', { name: 'Finish' })
             .click();
     }
 
