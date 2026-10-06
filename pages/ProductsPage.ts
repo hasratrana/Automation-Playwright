@@ -10,6 +10,6 @@ export class ProductsPage {
   async verifyProductsPage() {
 
     await expect(this.page).toHaveURL(/inventory.html/);
-    await expect(this.page.locator('.inventory_list')).toBeVisible();
+     await expect(this.page.locator('.inventory_list')).toBeVisible();
   }
 }
